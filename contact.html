@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        margin: 10px;
+      }
+      .container {
+        background-color: #e6f7ff;
+        padding: 5px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 800px;
+      }
+      h2 {
+        margin-bottom: 5spx;
+      }
+      .visitor-count {
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+      input,
+      textarea {
+        width: 90%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 100%;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Contact Me</h2>
+      <p class="visitor-count">
+        Total Visitors: <span id="visitorCount">0</span>
+      </p>
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea
+          id="message"
+          placeholder="Your Message"
+          rows="4"
+          required
+        ></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          let visitorCount = localStorage.getItem("visitorCount") || 0;
+          visitorCount++;
+          localStorage.setItem("visitorCount", visitorCount);
+          document.getElementById("visitorCount").innerText = visitorCount;
+          alert("Your message has been sent!");
+          document.getElementById("contactForm").reset();
+        });
+    </script>
+  </body>
+</html>
